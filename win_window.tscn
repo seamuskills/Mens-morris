@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://csdyyhfpef8qn"]
+
+[ext_resource type="Script" path="res://restart_window.gd" id="1_jpkh3"]
+[ext_resource type="Texture2D" uid="uid://dcp4xbqyyyiuv" path="res://sprites/restart_dialogue/base.png" id="2_ayq64"]
+[ext_resource type="Texture2D" uid="uid://cjypm5d5sbahg" path="res://sprites/restart_dialogue/restart.png" id="3_28olu"]
+[ext_resource type="Texture2D" uid="uid://bbn0qv4xxswud" path="res://sprites/restart_dialogue/dont.png" id="4_uoxia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_08ti5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iv86c"]
+
+[node name="RestartWindow" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jpkh3")
+
+[node name="Base" type="Sprite2D" parent="."]
+position = Vector2(100, 50)
+texture = ExtResource("2_ayq64")
+
+[node name="restart" type="Button" parent="."]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 66.0
+offset_right = 115.0
+offset_bottom = 91.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_08ti5")
+icon = ExtResource("3_28olu")
+flat = true
+
+[node name="dont" type="Button" parent="."]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 66.0
+offset_right = 172.0
+offset_bottom = 91.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iv86c")
+icon = ExtResource("4_uoxia")
+flat = true
+
+[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="dont" to="." method="_on_dont_pressed"]

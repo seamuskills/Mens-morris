@@ -1,0 +1,207 @@
+[gd_scene load_steps=19 format=3 uid="uid://buoyrsbf4g6d7"]
+
+[ext_resource type="Texture2D" uid="uid://d04ilovgde5tl" path="res://sprites/board.png" id="1_lkcef"]
+[ext_resource type="Texture2D" uid="uid://ddcavnq87jo8c" path="res://sprites/closegame.png" id="2_4238i"]
+[ext_resource type="Script" path="res://board.gd" id="2_nkvpj"]
+[ext_resource type="Script" path="res://quit_button.gd" id="5_50585"]
+[ext_resource type="Texture2D" uid="uid://bli4vlqv1lckl" path="res://sprites/restart.png" id="6_6q3h6"]
+[ext_resource type="Script" path="res://restart_button.gd" id="7_beywn"]
+[ext_resource type="Texture2D" uid="uid://d3qwy1ck3qwbf" path="res://sprites/stone_black.png" id="8_no06f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wl7lk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cr8dp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8lpeb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rt0ay"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kcwkk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f870j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_act4f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xucu7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jwo0g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qjxmw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xgict"]
+
+[node name="GameManager" type="Node2D"]
+
+[node name="Board" type="Sprite2D" parent="."]
+texture = ExtResource("1_lkcef")
+script = ExtResource("2_nkvpj")
+
+[node name="0" type="Sprite2D" parent="Board"]
+position = Vector2(-144, -144)
+texture = ExtResource("8_no06f")
+
+[node name="1" type="Sprite2D" parent="Board"]
+position = Vector2(0, -144)
+texture = ExtResource("8_no06f")
+
+[node name="2" type="Sprite2D" parent="Board"]
+position = Vector2(144, -145)
+texture = ExtResource("8_no06f")
+
+[node name="3" type="Sprite2D" parent="Board"]
+position = Vector2(-96, -96)
+texture = ExtResource("8_no06f")
+
+[node name="4" type="Sprite2D" parent="Board"]
+position = Vector2(0, -96)
+texture = ExtResource("8_no06f")
+
+[node name="5" type="Sprite2D" parent="Board"]
+position = Vector2(96, -96)
+texture = ExtResource("8_no06f")
+
+[node name="6" type="Sprite2D" parent="Board"]
+position = Vector2(-48, -47)
+texture = ExtResource("8_no06f")
+
+[node name="7" type="Sprite2D" parent="Board"]
+position = Vector2(0, -47)
+texture = ExtResource("8_no06f")
+
+[node name="8" type="Sprite2D" parent="Board"]
+position = Vector2(48, -48)
+texture = ExtResource("8_no06f")
+
+[node name="9" type="Sprite2D" parent="Board"]
+position = Vector2(-144, 0)
+texture = ExtResource("8_no06f")
+
+[node name="10" type="Sprite2D" parent="Board"]
+position = Vector2(-96, 0)
+texture = ExtResource("8_no06f")
+
+[node name="11" type="Sprite2D" parent="Board"]
+position = Vector2(-48, 0)
+texture = ExtResource("8_no06f")
+
+[node name="12" type="Sprite2D" parent="Board"]
+position = Vector2(48, 1)
+texture = ExtResource("8_no06f")
+
+[node name="13" type="Sprite2D" parent="Board"]
+position = Vector2(96, 2)
+texture = ExtResource("8_no06f")
+
+[node name="14" type="Sprite2D" parent="Board"]
+position = Vector2(144, 2)
+texture = ExtResource("8_no06f")
+
+[node name="15" type="Sprite2D" parent="Board"]
+position = Vector2(-48, 50)
+texture = ExtResource("8_no06f")
+
+[node name="16" type="Sprite2D" parent="Board"]
+position = Vector2(0, 51)
+texture = ExtResource("8_no06f")
+
+[node name="17" type="Sprite2D" parent="Board"]
+position = Vector2(48, 51)
+texture = ExtResource("8_no06f")
+
+[node name="18" type="Sprite2D" parent="Board"]
+position = Vector2(-96, 96)
+texture = ExtResource("8_no06f")
+
+[node name="19" type="Sprite2D" parent="Board"]
+position = Vector2(0, 96)
+texture = ExtResource("8_no06f")
+
+[node name="20" type="Sprite2D" parent="Board"]
+position = Vector2(96, 98)
+texture = ExtResource("8_no06f")
+
+[node name="21" type="Sprite2D" parent="Board"]
+position = Vector2(-144, 146)
+texture = ExtResource("8_no06f")
+
+[node name="22" type="Sprite2D" parent="Board"]
+position = Vector2(0, 144)
+texture = ExtResource("8_no06f")
+
+[node name="23" type="Sprite2D" parent="Board"]
+position = Vector2(144, 144)
+texture = ExtResource("8_no06f")
+
+[node name="QuitButton" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 288.0
+offset_top = 148.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wl7lk")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_cr8dp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8lpeb")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rt0ay")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kcwkk")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_f870j")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_act4f")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_xucu7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jwo0g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qjxmw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xgict")
+icon = ExtResource("2_4238i")
+script = ExtResource("5_50585")
+
+[node name="restart button" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 148.0
+offset_right = 288.0
+offset_bottom = 180.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wl7lk")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_cr8dp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8lpeb")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rt0ay")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kcwkk")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_f870j")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_act4f")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_xucu7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jwo0g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qjxmw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xgict")
+icon = ExtResource("6_6q3h6")
+script = ExtResource("7_beywn")
+
+[node name="turn" type="Sprite2D" parent="."]
+position = Vector2(-224, -153)
+texture = ExtResource("8_no06f")
+
+[node name="reserveCount" type="Label" parent="turn"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -27.5
+offset_right = 24.0
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "x9"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="restart button" to="restart button" method="_on_pressed"]

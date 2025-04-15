@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d06mvg2i76mhn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pmud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oghyo"]
+bg_color = Color(1, 1, 1, 0.243137)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_keoe5"]
+
+[node name="hitbox" type="Button"]
+custom_minimum_size = Vector2(32, 32)
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5pmud")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oghyo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_keoe5")

@@ -108,7 +108,7 @@ func on_piece_select(position: int) -> void:
 			removing = false
 			turn = not turn
 	else:
-		if boardPositions[position] == turn:
+		if boardPositions[position] == turn and reserve[int(turn)] == 0:
 			print("REMOVE")
 			boardPositions[position] = null
 			moving = position
@@ -143,3 +143,15 @@ func on_piece_select(position: int) -> void:
 			millsOnly[0] = false
 		elif boardPositions[pos] == true and not checkMillOnPos(pos):
 			millsOnly[1] = false
+			
+	
+	if reserve[0] + placed[0] <= 2:
+		var window = winWindow.instantiate()
+		window.get_node("Base").texture = winWhite
+		get_tree().current_scene.add_child(window)
+		print("WIN WHITE")
+	elif reserve[1] + placed[1] <= 2:
+		var window = winWindow.instantiate()
+		window.get_node("Base").texture = winBlack
+		get_tree().current_scene.add_child(window)
+		print("WIN BLACK")

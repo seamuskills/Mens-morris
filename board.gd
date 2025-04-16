@@ -11,6 +11,7 @@ var winWhite = load("res://sprites/win_dialogue/whiteWins.png")
 var turn : bool = true #same as boardPositions
 var moving = null #position of piece being moved
 var removing = false #removing something because the player made a mill?
+var millsOnly = [false, false]
 var reserve = [9, 9]
 var placed = [0, 0]
 
@@ -101,7 +102,7 @@ func checkMillOnPos(position):
 
 func on_piece_select(position: int) -> void:
 	if removing:
-		if boardPositions[position] == not turn and not checkMillOnPos(position):
+		if boardPositions[position] == not turn and (not checkMillOnPos(position) or millsOnly[int(not turn)]):
 			boardPositions[position] = null
 			placed[int(not turn)] -= 1
 			removing = false
@@ -135,3 +136,10 @@ func on_piece_select(position: int) -> void:
 				print("MILL")
 				removing = true
 	updateSprites()
+	
+	millsOnly = [true, true]
+	for pos in range(24):
+		if boardPositions[pos] == false and not checkMillOnPos(pos):
+			millsOnly[0] = false
+		elif boardPositions[pos] == true and not checkMillOnPos(pos):
+			millsOnly[1] = false

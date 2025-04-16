@@ -89,12 +89,12 @@ func checkMillOnPos(position):
 	print(boardPositions)
 	for mill in verticalMills:
 		if position in mill:
-			isMill = boardPositions[mill[0]] && boardPositions[mill[1]] && boardPositions[mill[2]]
+			isMill = boardPositions[mill[0]] == boardPositions[mill[1]] && boardPositions[mill[1]] == boardPositions[mill[2]]
 			if isMill: print(mill)
 	
 	if not isMill: #no vertical mill, check for horizontal
 		var anchor = position - position % 3
-		isMill = boardPositions[anchor] && boardPositions[anchor + 1] && boardPositions[anchor + 2]
+		isMill = boardPositions[anchor] == boardPositions[anchor + 1] && boardPositions[anchor + 1] == boardPositions[anchor + 2]
 		if isMill: print(str(anchor))
 	
 	return isMill

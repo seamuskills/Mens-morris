@@ -8,6 +8,7 @@ var blackTexture : Resource = load("res://sprites/stone_black.png")
 var winWindow = preload("res://win_window.tscn")
 var winBlack = load("res://sprites/win_dialogue/blackWins.png")
 var winWhite = load("res://sprites/win_dialogue/whiteWins.png")
+@onready var instructions = $Instructions
 @onready var soundPlayer = $AudioStreamPlayer2D
 var placeSound = load("res://sounds/place.wav")
 var breakSound = load("res://sounds/destroy.wav")
@@ -57,6 +58,15 @@ func _process(delta: float) -> void:
 			window.get_node("Base").texture = winBlack
 		else:
 			window.get_node("Base").texture = winWhite
+			
+	
+	instructions.text = "Place your piece."
+	if moving:
+		instructions.text = "Select adjecent position to move to.\nSelect original position to cancel."
+	elif removing:
+		instructions.text = "Select enemy piece to remove.\n\nPieces in mills can only be removed if they are the last ones left."
+	elif reserve[int(turn)] == 0:
+		instructions.text = "Move an existing piece."
 
 func updateSprites() -> void:
 	for position in range(24):

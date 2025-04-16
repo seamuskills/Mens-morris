@@ -36,6 +36,14 @@
 texture = ExtResource("1_lkcef")
 script = ExtResource("2_nkvpj")
 
+[node name="Instructions" type="Label" parent="Board"]
+offset_left = 177.0
+offset_top = -163.0
+offset_right = 303.0
+offset_bottom = -140.0
+text = "Select enemy piece to remove"
+autowrap_mode = 2
+
 [node name="0" type="Sprite2D" parent="Board"]
 position = Vector2(-144, -144)
 texture = ExtResource("8_no06f")

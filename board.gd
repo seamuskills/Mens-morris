@@ -8,6 +8,7 @@ var blackTexture : Resource = load("res://sprites/stone_black.png")
 var winWindow = preload("res://win_window.tscn")
 var winBlack = load("res://sprites/win_dialogue/blackWins.png")
 var winWhite = load("res://sprites/win_dialogue/whiteWins.png")
+var poof = preload("res://poof.tscn")
 var turn : bool = true #same as boardPositions
 var moving = null #position of piece being moved
 var removing = false #removing something because the player made a mill?
@@ -103,6 +104,11 @@ func checkMillOnPos(position):
 func on_piece_select(position: int) -> void:
 	if removing:
 		if boardPositions[position] == not turn and (not checkMillOnPos(position) or millsOnly[int(not turn)]):
+			print("REMOVE PERMANENT")
+			var cloud = poof.instantiate()
+			cloud.position = boardSprites[position].position
+			cloud.emitting = true
+			get_tree().current_scene.add_child(cloud)
 			boardPositions[position] = null
 			placed[int(not turn)] -= 1
 			removing = false

@@ -8,6 +8,11 @@ var blackTexture : Resource = load("res://sprites/stone_black.png")
 var winWindow = preload("res://win_window.tscn")
 var winBlack = load("res://sprites/win_dialogue/blackWins.png")
 var winWhite = load("res://sprites/win_dialogue/whiteWins.png")
+@onready var soundPlayer = $AudioStreamPlayer2D
+var placeSound = load("res://sounds/place.wav")
+var breakSound = load("res://sounds/destroy.wav")
+var moveSound = load("res://sounds/move.wav")
+var winSound = load("res://sounds/win.wav")
 var poof = preload("res://poof.tscn")
 var turn : bool = true #same as boardPositions
 var moving = null #position of piece being moved
@@ -105,6 +110,8 @@ func on_piece_select(position: int) -> void:
 	if removing:
 		if boardPositions[position] == not turn and (not checkMillOnPos(position) or millsOnly[int(not turn)]):
 			print("REMOVE PERMANENT")
+			soundPlayer.stream = breakSound
+			soundPlayer.play()
 			var cloud = poof.instantiate()
 			cloud.position = boardSprites[position].position
 			cloud.emitting = true
@@ -120,6 +127,8 @@ func on_piece_select(position: int) -> void:
 			moving = position
 		elif moving != null and boardPositions[position] == null and isAdjecent(position, moving):
 			print("MOVE")
+			soundPlayer.stream = moveSound
+			soundPlayer.play()
 			boardPositions[position] = turn
 			moving = null
 			if not checkMillOnPos(position):
@@ -133,6 +142,8 @@ func on_piece_select(position: int) -> void:
 			moving = null
 		elif reserve[int(turn)] > 0 and boardPositions[position] == null and moving == null:
 			print("PLACE")
+			soundPlayer.stream = placeSound
+			soundPlayer.play()
 			boardPositions[position] = turn
 			placed[int(turn)] += 1
 			reserve[int(turn)] -= 1
@@ -155,9 +166,17 @@ func on_piece_select(position: int) -> void:
 		var window = winWindow.instantiate()
 		window.get_node("Base").texture = winWhite
 		get_tree().current_scene.add_child(window)
+		soundPlayer.stream = winSound
+		soundPlayer.play()
 		print("WIN WHITE")
 	elif reserve[1] + placed[1] <= 2:
 		var window = winWindow.instantiate()
 		window.get_node("Base").texture = winBlack
 		get_tree().current_scene.add_child(window)
+		soundPlayer.stream = winSound
+		soundPlayer.play()
 		print("WIN BLACK")
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	soundPlayer.pitch_scale = 1 * randf_range(0.5, 1.1)

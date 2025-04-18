@@ -21,6 +21,7 @@ var removing = false #removing something because the player made a mill?
 var millsOnly = [false, false]
 var reserve = [9, 9]
 var placed = [0, 0]
+var stuck = false
 
 const verticalMills = [
 	[0, 9, 21],
@@ -80,7 +81,7 @@ func updateSprites() -> void:
 				boardSprites[position].texture = null
 				boardSprites[position].modulate.a = 1
 
-func isAdjecent(x, y):
+func isAdjecent(x : int, y : int):
 	if int(x / 3) == int(y / 3): #all horizontals
 		return abs(x - y) == 1
 	else:
@@ -88,6 +89,20 @@ func isAdjecent(x, y):
 			if x in mill and y in mill:
 				return abs(x - y) < abs(mill[0] - mill[2])
 		return false
+		
+func getAdjecent(x : int):
+	var positions = []
+	for mill in verticalMills:
+		if x in mill:
+			var index = mill.find(x)
+			if index > 0: positions.append(mill[index - 1])
+			if index < 2: positions.append(mill[index + 1])
+			break
+	
+	if x % 3 > 0: positions.append(x - 1)
+	if x % 3 < 2: positions.append(x + 1)
+	
+	return positions
 
 func restart():
 	boardPositions.clear()
@@ -96,23 +111,20 @@ func restart():
 	turn = true
 	moving = null
 	removing = false
+	stuck = false
 	reserve = [9, 9]
 	placed = [0, 0]
 
-func checkMillOnPos(position):
+func checkMillOnPos(position : int):
 	if position == null: return false
 	var isMill = false
-	print(verticalMills)
-	print(boardPositions)
 	for mill in verticalMills:
 		if position in mill:
 			isMill = boardPositions[mill[0]] == boardPositions[mill[1]] && boardPositions[mill[1]] == boardPositions[mill[2]]
-			if isMill: print(mill)
 	
 	if not isMill: #no vertical mill, check for horizontal
 		var anchor = position - position % 3
 		isMill = boardPositions[anchor] == boardPositions[anchor + 1] && boardPositions[anchor + 1] == boardPositions[anchor + 2]
-		if isMill: print(str(anchor))
 	
 	return isMill
 
@@ -171,15 +183,25 @@ func on_piece_select(position: int) -> void:
 		elif boardPositions[pos] == true and not checkMillOnPos(pos):
 			millsOnly[1] = false
 			
+
+	#check if opponent is now out of options
+	if reserve[int(turn)] == 0:
+		stuck = true
+		for pos in range(24):
+			if boardPositions[pos] == turn:
+				for adjPos in getAdjecent(pos):
+					if boardPositions[adjPos] == null:
+						stuck = false
+						break
 	
-	if reserve[0] + placed[0] <= 2:
+	if reserve[0] + placed[0] <= 2 or (stuck and turn == false):
 		var window = winWindow.instantiate()
 		window.get_node("Base").texture = winWhite
 		get_tree().current_scene.add_child(window)
 		soundPlayer.stream = winSound
 		soundPlayer.play()
 		print("WIN WHITE")
-	elif reserve[1] + placed[1] <= 2:
+	elif reserve[1] + placed[1] <= 2 or (stuck and turn == true):
 		var window = winWindow.instantiate()
 		window.get_node("Base").texture = winBlack
 		get_tree().current_scene.add_child(window)

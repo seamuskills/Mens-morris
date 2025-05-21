@@ -15,6 +15,7 @@ var breakSound = load("res://sounds/destroy.wav")
 var moveSound = load("res://sounds/move.wav")
 var winSound = load("res://sounds/win.wav")
 var poof = preload("res://poof.tscn")
+var dir_poof = preload("res://directional_poof.tscn")
 var turn : bool = true #same as boardPositions
 var moving = null #position of piece being moved
 var removing = false #removing something because the player made a mill?
@@ -149,6 +150,12 @@ func on_piece_select(position: int) -> void:
 			moving = position
 		elif moving != null and boardPositions[position] == null and isAdjecent(position, moving):
 			print("MOVE")
+			var particle = dir_poof.instantiate()
+			particle.direction.x = sign(boardSprites[position].position.x - boardSprites[moving].position.x)
+			particle.direction.y = sign(boardSprites[position].position.y - boardSprites[moving].position.y)
+			particle.global_position = boardSprites[moving].global_position;
+			particle.emitting = true
+			get_parent().add_child(particle)
 			soundPlayer.stream = moveSound
 			soundPlayer.play()
 			boardPositions[position] = turn

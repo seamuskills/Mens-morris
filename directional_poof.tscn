@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cye2imp0g7ilw"]
+
+[sub_resource type="Curve" id="Curve_xomxb"]
+_data = [Vector2(0, 0.956044), 0.0, 0.0, 0, 0, Vector2(0.837079, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_yq1hy"]
+offsets = PackedFloat32Array(0.873333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="directional poof" type="CPUParticles2D"]
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.7
+initial_velocity_max = 131.31
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_xomxb")
+color_ramp = SubResource("Gradient_yq1hy")

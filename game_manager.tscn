@@ -53,7 +53,7 @@ position = Vector2(0, -144)
 texture = ExtResource("8_no06f")
 
 [node name="2" type="Sprite2D" parent="Board"]
-position = Vector2(144, -145)
+position = Vector2(144, -144)
 texture = ExtResource("8_no06f")
 
 [node name="3" type="Sprite2D" parent="Board"]
@@ -69,11 +69,11 @@ position = Vector2(96, -96)
 texture = ExtResource("8_no06f")
 
 [node name="6" type="Sprite2D" parent="Board"]
-position = Vector2(-48, -47)
+position = Vector2(-48, -48)
 texture = ExtResource("8_no06f")
 
 [node name="7" type="Sprite2D" parent="Board"]
-position = Vector2(0, -47)
+position = Vector2(0, -48)
 texture = ExtResource("8_no06f")
 
 [node name="8" type="Sprite2D" parent="Board"]
@@ -93,27 +93,27 @@ position = Vector2(-48, 0)
 texture = ExtResource("8_no06f")
 
 [node name="12" type="Sprite2D" parent="Board"]
-position = Vector2(48, 1)
+position = Vector2(48, 0)
 texture = ExtResource("8_no06f")
 
 [node name="13" type="Sprite2D" parent="Board"]
-position = Vector2(96, 2)
+position = Vector2(96, 0)
 texture = ExtResource("8_no06f")
 
 [node name="14" type="Sprite2D" parent="Board"]
-position = Vector2(144, 2)
+position = Vector2(144, 0)
 texture = ExtResource("8_no06f")
 
 [node name="15" type="Sprite2D" parent="Board"]
-position = Vector2(-48, 50)
+position = Vector2(-48, 48)
 texture = ExtResource("8_no06f")
 
 [node name="16" type="Sprite2D" parent="Board"]
-position = Vector2(0, 51)
+position = Vector2(0, 48)
 texture = ExtResource("8_no06f")
 
 [node name="17" type="Sprite2D" parent="Board"]
-position = Vector2(48, 51)
+position = Vector2(48, 48)
 texture = ExtResource("8_no06f")
 
 [node name="18" type="Sprite2D" parent="Board"]
@@ -125,11 +125,11 @@ position = Vector2(0, 96)
 texture = ExtResource("8_no06f")
 
 [node name="20" type="Sprite2D" parent="Board"]
-position = Vector2(96, 98)
+position = Vector2(96, 96)
 texture = ExtResource("8_no06f")
 
 [node name="21" type="Sprite2D" parent="Board"]
-position = Vector2(-144, 146)
+position = Vector2(-144, 144)
 texture = ExtResource("8_no06f")
 
 [node name="22" type="Sprite2D" parent="Board"]

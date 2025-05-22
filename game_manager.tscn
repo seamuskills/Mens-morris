@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://buoyrsbf4g6d7"]
+[gd_scene load_steps=20 format=3 uid="uid://buoyrsbf4g6d7"]
 
 [ext_resource type="Texture2D" uid="uid://d04ilovgde5tl" path="res://sprites/board.png" id="1_lkcef"]
 [ext_resource type="Texture2D" uid="uid://ddcavnq87jo8c" path="res://sprites/closegame.png" id="2_4238i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://quit_button.gd" id="5_50585"]
 [ext_resource type="Texture2D" uid="uid://bli4vlqv1lckl" path="res://sprites/restart.png" id="6_6q3h6"]
 [ext_resource type="Script" path="res://restart_button.gd" id="7_beywn"]
+[ext_resource type="Texture2D" uid="uid://0jrmxns1hj00" path="res://sprites/sideIcons/place_white.png" id="8_i7icw"]
 [ext_resource type="Texture2D" uid="uid://d3qwy1ck3qwbf" path="res://sprites/stone_black.png" id="8_no06f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wl7lk"]
@@ -35,14 +36,6 @@
 [node name="Board" type="Sprite2D" parent="."]
 texture = ExtResource("1_lkcef")
 script = ExtResource("2_nkvpj")
-
-[node name="Instructions" type="Label" parent="Board"]
-offset_left = 177.0
-offset_top = -163.0
-offset_right = 303.0
-offset_bottom = -140.0
-text = "Select enemy piece to remove"
-autowrap_mode = 2
 
 [node name="0" type="Sprite2D" parent="Board"]
 position = Vector2(-144, -144)
@@ -197,8 +190,8 @@ icon = ExtResource("6_6q3h6")
 script = ExtResource("7_beywn")
 
 [node name="turn" type="Sprite2D" parent="."]
-position = Vector2(-224, -153)
-texture = ExtResource("8_no06f")
+position = Vector2(-241, -114)
+texture = ExtResource("8_i7icw")
 
 [node name="reserveCount" type="Label" parent="turn"]
 anchors_preset = 8
@@ -206,14 +199,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -27.5
-offset_right = 24.0
-offset_bottom = -4.5
+offset_left = -42.0
+offset_top = -43.0
+offset_right = -2.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "x9"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [connection signal="finished" from="Board/AudioStreamPlayer2D" to="Board" method="_on_audio_stream_player_2d_finished"]
 [connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]

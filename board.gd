@@ -8,7 +8,16 @@ var blackTexture : Resource = load("res://sprites/stone_black.png")
 var winWindow = preload("res://win_window.tscn")
 var winBlack = load("res://sprites/win_dialogue/blackWins.png")
 var winWhite = load("res://sprites/win_dialogue/whiteWins.png")
-@onready var instructions = $Instructions
+var turnIcons = [
+	load("res://sprites/sideIcons/place_black.png"),
+	load("res://sprites/sideIcons/place_white.png"),
+	load("res://sprites/sideIcons/replace_black.png"),
+	load("res://sprites/sideIcons/replace_white.png"),
+	load("res://sprites/sideIcons/move_black.png"),
+	load("res://sprites/sideIcons/move_white.png"),
+	load("res://sprites/sideIcons/destroy_black.png"),
+	load("res://sprites/sideIcons/destroy_white.png")
+]
 @onready var soundPlayer = $AudioStreamPlayer2D
 var placeSound = load("res://sounds/place.wav")
 var breakSound = load("res://sounds/destroy.wav")
@@ -51,8 +60,8 @@ func _ready() -> void:
 		boardSprites[i].add_child(hitbox)
 
 func _process(delta: float) -> void:
-	turnui.texture = whiteTexture if turn else blackTexture
 	turnui.get_child(0).text = "x" + str(reserve[int(turn)])
+	turnui.get_child(0).visible = reserve[int(turn)] > 0
 	
 	if reserve[0] + placed[0] == 0 or reserve[1] + placed[1] == 0:
 		var window = winWindow.instantiate()
@@ -62,13 +71,13 @@ func _process(delta: float) -> void:
 			window.get_node("Base").texture = winWhite
 			
 	
-	instructions.text = "Place your piece."
+	turnui.texture = turnIcons[int(turn)]
 	if moving:
-		instructions.text = "Select adjecent position to move to.\nSelect original position to cancel."
+		turnui.texture = turnIcons[2 + int(turn)]
 	elif removing:
-		instructions.text = "Select enemy piece to remove.\n\nPieces in mills can only be removed if they are the last ones left."
+		turnui.texture = turnIcons[6 + int(turn)]
 	elif reserve[int(turn)] == 0:
-		instructions.text = "Move an existing piece."
+		turnui.texture = turnIcons[4 + int(turn)]
 
 func updateSprites() -> void:
 	for position in range(24):

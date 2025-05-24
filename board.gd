@@ -32,6 +32,7 @@ var millsOnly = [false, false]
 var reserve = [9, 9]
 var placed = [0, 0]
 var stuck = false
+var done = false #did someone win the game?
 
 const verticalMills = [
 	[0, 9, 21],
@@ -115,6 +116,7 @@ func getAdjecent(x : int):
 	return positions
 
 func restart():
+	done = false
 	boardPositions.clear()
 	boardPositions.resize(24)
 	updateSprites()
@@ -139,6 +141,7 @@ func checkMillOnPos(position : int):
 	return isMill
 
 func on_piece_select(position: int) -> void:
+	if done: return
 	if removing:
 		if boardPositions[position] == not turn and (not checkMillOnPos(position) or millsOnly[int(not turn)]):
 			print("REMOVE PERMANENT")
@@ -201,7 +204,7 @@ func on_piece_select(position: int) -> void:
 			
 
 	#check if opponent is now out of options
-	if reserve[int(turn)] == 0:
+	if reserve[int(turn)] == 0 and not removing:
 		stuck = true
 		for pos in range(24):
 			if boardPositions[pos] == turn:
@@ -217,6 +220,7 @@ func on_piece_select(position: int) -> void:
 		soundPlayer.stream = winSound
 		soundPlayer.play()
 		print("WIN WHITE")
+		done = true
 	elif reserve[1] + placed[1] <= 2 or (stuck and turn == true):
 		var window = winWindow.instantiate()
 		window.get_node("Base").texture = winBlack
@@ -224,6 +228,7 @@ func on_piece_select(position: int) -> void:
 		soundPlayer.stream = winSound
 		soundPlayer.play()
 		print("WIN BLACK")
+		done = true
 
 
 func _on_audio_stream_player_2d_finished() -> void:

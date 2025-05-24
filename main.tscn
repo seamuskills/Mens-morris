@@ -1,9 +1,69 @@
-[gd_scene load_steps=2 format=3 uid="uid://r4dy06tflbb"]
+[gd_scene load_steps=19 format=3 uid="uid://r4dy06tflbb"]
 
 [ext_resource type="PackedScene" uid="uid://buoyrsbf4g6d7" path="res://game_manager.tscn" id="1_bmnji"]
+[ext_resource type="Texture2D" uid="uid://cts0whyacif71" path="res://sprites/music on.png" id="2_68ua5"]
+[ext_resource type="Script" path="res://music_manager.gd" id="3_7rtde"]
+[ext_resource type="AudioStream" uid="uid://bekdgtsqt02vr" path="res://music/bounce.mp3" id="3_bq12k"]
+[ext_resource type="AudioStream" uid="uid://b70flvu4ocii8" path="res://music/chipblue.mp3" id="4_wohls"]
+[ext_resource type="AudioStream" uid="uid://my7eak25ppmt" path="res://music/pop.mp3" id="5_hbfht"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxyev"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rpsb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1fmnl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_201xx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mab3k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66wvm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3x633"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nsqb8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mttqa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tph3f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ghbw"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_vl3tv"]
+shuffle = true
+stream_count = 3
+stream_0 = ExtResource("3_bq12k")
+stream_1 = ExtResource("4_wohls")
+stream_2 = ExtResource("5_hbfht")
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="GameManager" parent="." instance=ExtResource("1_bmnji")]
+
+[node name="Music Manager" type="Button" parent="."]
+offset_left = -320.0
+offset_top = 148.0
+offset_right = -288.0
+offset_bottom = 180.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mxyev")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_7rpsb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1fmnl")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_201xx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_mab3k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_66wvm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3x633")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_nsqb8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mttqa")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tph3f")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1ghbw")
+icon = ExtResource("2_68ua5")
+script = ExtResource("3_7rtde")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Music Manager"]
+stream = SubResource("AudioStreamPlaylist_vl3tv")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="pressed" from="Music Manager" to="Music Manager" method="_on_pressed"]
